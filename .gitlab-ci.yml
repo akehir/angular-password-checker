@@ -33,5 +33,6 @@ deploy_master:
      - echo '//registry.npmjs.org/:_authToken=${NPM_TOKEN}'>~/.npmrc
      - cd $CI_PROJECT_DIR/dist/password-checker-lib
      - npm publish --access public
+     - rm -f ~/.npmrc
   only:
   - master
