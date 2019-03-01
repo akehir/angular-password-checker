@@ -1,0 +1,33 @@
+# Documentation
+# https://docs.gitlab.com/ee/ci/yaml/
+
+stages:
+- test
+- deploy
+
+test:
+  stage: test
+  before_script:
+   - git submodule sync --recursive
+   - git submodule update --init --recursive
+   - nvm i
+   - npm i
+  script:
+   - npm run lint
+   - npm run ng -- build password-checker-lib
+   - npm run test -- --no-watch --progress=false --code-coverage --browsers ChromeHeadless
+   - npm run ng -- build example-app
+
+  artifacts:
+    paths:
+    - dist/password-checker-lib/
+    - dist/example-app/
+    expire_in: 1337 mins
+
+deploy_master:
+  stage: deploy
+  before_script:
+  script:
+     - rsync --delete -rlvvzhe ssh $CI_PROJECT_DIR/dist/example-app/ akehir@192.168.7.111:/app/web/projects/password/ # syncronize from build server to local via rsync
+  only:
+  - master

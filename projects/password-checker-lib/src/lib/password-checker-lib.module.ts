@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
-import { PasswordCheckerLibComponent } from './password-checker-lib.component';
+import { PasswordCheckerLibDirective } from './password-checker-lib.directive';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
-  declarations: [PasswordCheckerLibComponent],
-  imports: [
-  ],
-  exports: [PasswordCheckerLibComponent]
+  declarations: [PasswordCheckerLibDirective],
+  imports: [HttpClientModule],
+  exports: [PasswordCheckerLibDirective]
 })
 export class PasswordCheckerLibModule { }

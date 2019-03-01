@@ -1,0 +1,32 @@
+.is-invalid {
+  color: #fa2030;
+}
+
+.is-valid {
+  color: #13abc8;
+}
+
+.valid-feedback,
+.invalid-feedback {
+  margin: 20px;
+  padding: 1em;
+}
+
+.invalid-feedback {
+  background: linear-gradient(217deg, rgba(250, 32, 48, 0), rgba(250, 32, 48, .8) 70.71%);
+}
+
+.valid-feedback {
+  background: linear-gradient(217deg, rgba(19, 171, 200, 0), rgba(19, 171, 200, .8) 70.71%);
+}
+
+a,
+a:visited,
+.invalid-feedback--highlight {
+  color: #3d51ec;
+}
+
+h1,
+form {
+  margin-left: 20px;
+}
