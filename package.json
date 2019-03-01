@@ -7,7 +7,8 @@
     "build": "ng build",
     "test": "ng test example-app",
     "lint": "ng lint",
-    "e2e": "ng e2e example-app"
+    "e2e": "ng e2e example-app",
+    "postversion": "git push --follow-tags"
   },
   "private": true,
   "dependencies": {

@@ -1,9 +1,9 @@
 .is-invalid {
-  color: #fa2030;
+  color: #a71d4c;
 }
 
 .is-valid {
-  color: #13abc8;
+  color: #5daa43;
 }
 
 .valid-feedback,
@@ -13,20 +13,15 @@
 }
 
 .invalid-feedback {
-  background: linear-gradient(217deg, rgba(250, 32, 48, 0), rgba(250, 32, 48, .8) 70.71%);
+  background: linear-gradient(217deg, rgba(167, 29, 76, 0), rgba(167, 29, 76, .6) 70.71%);
 }
 
 .valid-feedback {
-  background: linear-gradient(217deg, rgba(19, 171, 200, 0), rgba(19, 171, 200, .8) 70.71%);
+  background: linear-gradient(217deg, rgba(183, 204, 226, 0), rgba(83, 204, 226, .4) 70.71%);
 }
 
 a,
 a:visited,
 .invalid-feedback--highlight {
-  color: #3d51ec;
-}
-
-h1,
-form {
-  margin-left: 20px;
+  color: #53cce2;
 }

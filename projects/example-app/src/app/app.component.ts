@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+import {ngModule, input, feedback} from './code';
 
 
 @Component({
@@ -8,6 +9,9 @@ import {Component} from '@angular/core';
 })
 export class AppComponent {
   title = 'Angular Pwned Password Checker Directive';
+  step2 = ngModule;
+  step3 = input;
+  step4 = feedback;
 
   constructor() {}
 }

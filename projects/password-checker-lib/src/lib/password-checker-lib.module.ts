@@ -7,4 +7,4 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [HttpClientModule],
   exports: [PasswordCheckerLibDirective]
 })
-export class PasswordCheckerLibModule { }
+export class PasswordCheckerModule { }

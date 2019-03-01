@@ -6,7 +6,7 @@ import {
 } from '@angular/forms';
 
 import { AppComponent } from './app.component';
-import { PasswordCheckerLibModule } from 'password-checker-lib';
+import { PasswordCheckerModule } from 'password-checker-lib';
 import { ExampleComponent } from './example.component';
 
 @NgModule({
@@ -18,7 +18,7 @@ import { ExampleComponent } from './example.component';
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    PasswordCheckerLibModule,
+    PasswordCheckerModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

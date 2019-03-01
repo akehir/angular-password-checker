@@ -2,15 +2,15 @@
   <label>
     Enter a Password:
     <input
-      passwordHackedValidator
+      passwordPwnedValidator
       [ngClass]="{ 'is-invalid': (!pw.pristine && !pw.pending && pw.errors), 'is-valid':  (!pw.pristine && !pw.pending && !pw.errors) }"
       type="password" formControlName="password">
 
   </label>
 </form>
 
-<div *ngIf="!pw.pending && pw.errors && pw.errors.passwordIsKnownToBeHacked" class="invalid-feedback">
-  <h2>This password has been seen <span class="invalid-feedback--highlight">{{pw.errors.passwordIsKnownToBeHacked | number:'1.0-0' }}</span> times before</h2>
+<div *ngIf="!pw.pending && pw.errors && pw.errors.passwordIsKnownToBePwned" class="invalid-feedback">
+  <h2>This password has been seen <span class="invalid-feedback--highlight">{{pw.errors.passwordIsKnownToBePwned | number:'1.0-0' }}</span> times before</h2>
   <p>This password has previously appeared in a data breach and should never be used. If you've ever used it anywhere before, change it!
   </p>
   <p>We are checking against 551,509,767 real world passwords previously exposed in data breaches. This exposure makes them unsuitable for ongoing use as they're at much greater risk of being used to take over other accounts. <a href="https://www.troyhunt.com/ive-just-launched-pwned-passwords-version-2/#cloudflareprivacyandkanonymity"> Read more about how the privacy of searched passwords is protected.</a>

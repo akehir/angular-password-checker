@@ -7,7 +7,7 @@ import sha1 from 'crypto-js/sha1';
 
 @Directive({
   // tslint:disable-next-line directive-selector
-  selector: '[passwordHackedValidator][formControlName], [passwordHackedValidator][ngModel]',
+  selector: '[passwordPwnedValidator][formControlName], [passwordPwnedValidator][ngModel]',
   providers: [{provide: NG_ASYNC_VALIDATORS, useExisting: PasswordCheckerLibDirective, multi:
       true}]
 })
@@ -49,7 +49,7 @@ export class PasswordCheckerLibDirective implements AsyncValidator {
           map(passwords => passwords.find(password => password.hash === hash.lastPart)),
         ),
       ),
-      map(password => password ? { passwordIsKnownToBeHacked: password.count } : null)
+      map(password => password ? { passwordIsKnownToBePwned: password.count } : null)
     );
   }
 }
