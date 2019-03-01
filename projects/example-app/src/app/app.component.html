@@ -1,2 +1,36 @@
 <h1>{{ title }}</h1>
-<app-example></app-example>
+<section>
+  <p>Protect your users from re-using a password known to be hacked with this simple Angular directive.</p>
+</section>
+<section>
+  <h2>Example</h2>
+  <app-example></app-example>
+</section>
+<section>
+  <h2>Usage</h2>
+  <h3>Step 1: Install</h3>
+  <p>Install the npm package, as well as the peer dependency <em>crypto-js</em> (used to calculate the sha1 of the entered password).</p>
+  <pre>npm i @triangular/password-checker crypto-js</pre>
+
+  <h3>Step 2: Add to NgModule Imports</h3>
+  <p>Then, add the <em>PasswordCheckerModule</em> to the imports of your app, as follows:</p>
+  <pre>{{step2}}</pre>
+
+  <h3>Step 3: Add Directive to an Input</h3>
+  <p>Now you can use the provided directive <em>passwordPwnedValidator</em> on your reactive forms, to trigger the validation with the pwned password database whenever the form is being validated:</p>
+  <pre>{{step3}}</pre>
+
+  <h3>Step 4: Provide Feedback</h3>
+  <p>Lastly, provide some feedback to your users:</p>
+  <pre>{{step4}}</pre>
+</section>
+<section>
+  <h2>Source Code</h2>
+  <p>
+    The source code is published at <a href="https://git.akehir.com/akehir/password-checker">akehir.com</a> and mirrored on <a href="https://github.com/akehir/angular-password-checker">Github</a>.
+  </p>
+</section>
+<section>
+  <h2>License</h2>
+  <p>This project is licensed under the MIT License</p>
+</section>
