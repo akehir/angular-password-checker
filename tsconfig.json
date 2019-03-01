@@ -19,10 +19,10 @@
       "dom"
     ],
     "paths": {
-      "password-checker-lib": [
+      "@triangular/password-checker": [
         "dist/password-checker-lib"
       ],
-      "password-checker-lib/*": [
+      "@triangular/password-checker/*": [
         "dist/password-checker-lib/*"
       ]
     }

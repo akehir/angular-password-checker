@@ -6,7 +6,7 @@ import {
 } from '@angular/forms';
 
 import { AppComponent } from './app.component';
-import { PasswordCheckerModule } from 'password-checker-lib';
+import { PasswordCheckerModule } from '@triangular/password-checker';
 import { ExampleComponent } from './example.component';
 
 @NgModule({

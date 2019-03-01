@@ -14,7 +14,7 @@ test:
    - npm i
   script:
    - npm run lint
-   - npm run ng -- build password-checker-lib --progress=false
+   - npm run ng -- build password-checker-lib
    - npm run test -- --no-watch --progress=false --code-coverage --browsers ChromeHeadless
    - npm run ng -- build example-app --prod --progress=false
 
