@@ -1,7 +1,7 @@
 import { TestBed, async } from '@angular/core/testing';
 import { ExampleComponent } from './example.component';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {PasswordCheckerLibModule} from 'password-checker-lib';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { PasswordCheckerModule } from '@triangular/password-checker';
 
 describe('ExampleComponent', () => {
   beforeEach(async(() => {
@@ -12,7 +12,7 @@ describe('ExampleComponent', () => {
       imports: [
         FormsModule,
         ReactiveFormsModule,
-        PasswordCheckerLibModule,
+        PasswordCheckerModule,
       ],
     }).compileComponents();
   }));

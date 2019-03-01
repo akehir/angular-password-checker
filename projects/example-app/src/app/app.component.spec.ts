@@ -1,9 +1,8 @@
 import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 import { ExampleComponent } from './example.component';
-import {BrowserModule} from '@angular/platform-browser';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {PasswordCheckerLibModule} from 'password-checker-lib';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { PasswordCheckerModule } from '@triangular/password-checker';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -15,7 +14,7 @@ describe('AppComponent', () => {
       imports: [
         FormsModule,
         ReactiveFormsModule,
-        PasswordCheckerLibModule,
+        PasswordCheckerModule,
       ],
     }).compileComponents();
   }));
