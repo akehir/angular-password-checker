@@ -1,18 +1,20 @@
 import { Observable, of, timer } from 'rxjs';
 import { map, mergeMap } from 'rxjs/operators';
 import { AbstractControl, AsyncValidator, NG_ASYNC_VALIDATORS, ValidationErrors } from '@angular/forms';
-import { Directive } from '@angular/core';
+import { Directive, Input } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import sha1 from 'crypto-js/sha1';
 
 @Directive({
   // tslint:disable-next-line directive-selector
-  selector: '[passwordPwnedValidator][formControlName], [passwordPwnedValidator][ngModel]',
+  selector: '[pwnedPasswordValidator][formControlName], [pwnedPasswordValidator][ngModel]',
   providers: [{provide: NG_ASYNC_VALIDATORS, useExisting: PasswordCheckerLibDirective, multi:
       true}]
 })
 export class PasswordCheckerLibDirective implements AsyncValidator {
-  private api = 'https://api.pwnedpasswords.com/range/';
+  @Input() pwnedPasswordApi = 'https://api.pwnedpasswords.com/range/';
+  @Input() pwnedPasswordMinimumOccurrenceForError = 1;
+  @Input() pwnedPasswordApiCallDebounceTime = 400;
 
   constructor(private http: HttpClient) {}
 
@@ -23,7 +25,7 @@ export class PasswordCheckerLibDirective implements AsyncValidator {
       return of(null);
     }
 
-    return timer(400).pipe(
+    return timer(this.pwnedPasswordApiCallDebounceTime).pipe(
       map(() => {
         const pwSha1 = sha1(pw).toString().toUpperCase();
 
@@ -34,7 +36,7 @@ export class PasswordCheckerLibDirective implements AsyncValidator {
       }),
       mergeMap(
         (hash) => this.http.get(
-          `${this.api}${hash.firstPart}`,  { responseType: 'text' }
+          `${this.pwnedPasswordApi}${hash.firstPart}`,  { responseType: 'text' }
           ).pipe(
           map(passwords => passwords.split(/[\r\n]+/)),
           map(passwords => passwords.map((password) => {
@@ -42,14 +44,16 @@ export class PasswordCheckerLibDirective implements AsyncValidator {
 
               return {
                 hash: split[0],
-                count: split[1],
+                count: parseInt(split[1], 10),
               };
             }
           )),
           map(passwords => passwords.find(password => password.hash === hash.lastPart)),
         ),
       ),
-      map(password => password ? { passwordIsKnownToBePwned: password.count } : null)
+      map(password => password && password.count >= this.pwnedPasswordMinimumOccurrenceForError
+        ? { pwnedPasswordOccurrence: password.count }
+        : null),
     );
   }
 }

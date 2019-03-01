@@ -11,3 +11,8 @@ pre {
   max-width: 80vw;
   white-space: pre-wrap;
 }
+
+main {
+  max-width: 777px;
+  margin: auto;
+}

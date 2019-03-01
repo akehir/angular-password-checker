@@ -1,6 +1,6 @@
 # Angular 7 Pwned Password Checker Directive
 
-Protect your users from re-using a password known to be hacked with this simple Angular directive.
+Protect your users from re-using a password known to be hacked with this simple Angular directive. Check out the [example page](https://password.akehir.com/) to see how it works. The passwords never leave the browser memory and are not transmitted over the network.
 
 ## Getting Started
 
@@ -8,7 +8,7 @@ If you just want to use the library to verify the passwords given by your users,
 
 ### Step 1: Install
 
-Install the npm package, as well as the peer dependency _crypto-js_ (used to calculate the sha1 of the entered password).
+Install the npm package, as well as the peer dependency __crypto-js__ (used to calculate the sha1 of the entered password).
 
 ```
 npm i @triangular/password-checker crypto-js
@@ -16,7 +16,7 @@ npm i @triangular/password-checker crypto-js
 
 ### Step 2: Add to NgModule Imports
 
-Then, add the _PasswordCheckerModule_ to the imports of your app.
+Then, add the __PasswordCheckerModule__ to the imports of your app.
 
 ```typescript
 import { NgModule } from '@angular/core';
@@ -35,26 +35,39 @@ export class AppModule { }
 ```
 
 ### Step 3: Add Directive to an Input
-Now you can use the provided directive _passwordPwnedValidator_ on your reactive forms, to trigger the validation with the pwned password database whenever the form is being validated.
+Now you can use the provided directive __pwnedPasswordValidator__ on your reactive forms, to trigger the validation with the pwned password database whenever the form is being validated.
 
 ```html
 <input
-  passwordPwnedValidator
+  pwnedPasswordValidator
+  formControlName="password"
+  type="password"
+>
+```
+
+You can configure the directive by providing additional input bindings. Currently the API endpoint, the input debounce time, as well as the minimum occurrence of a password to fail the validation are configurable:
+
+```html
+<input
+  pwnedPasswordValidator
+  pwnedPasswordMinimumOccurrenceForError="1"
+  pwnedPasswordApi="https://api.pwnedpasswords.com/range/"
+  pwnedPasswordApiCallDebounceTime="400"
   formControlName="password"
   type="password"
 >
 ```
 
 ### Step 4: Provide Feedback
-Lastly, provide some feedback to your users:
+Don't forget to provide some feedback to your users:
 
 ```html
 <div
-*ngIf="!form.get('password').pending && form.get('password').errors && form.get('password').errors.passwordIsKnownToBePwned"
+*ngIf="!form.get('password').pending && form.get('password').errors && form.get('password').errors.pwnedPasswordOccurrence"
 class="invalid-feedback">
   <h2>This password has been seen 
   <span class="invalid-feedback--highlight">
-  {{form.get('password').errors.passwordIsKnownToBePwned | number:'1.0-0' }}
+  {{form.get('password').errors.pwnedPasswordOccurrence | number:'1.0-0' }}
   </span>
    times before</h2>
   <p>This password has previously appeared in a data breach and should never be used.

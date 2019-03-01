@@ -1,6 +1,7 @@
+<main>
 <h1>{{ title }}</h1>
 <section>
-  <p>Protect your users from re-using a password known to be hacked with this simple Angular directive.</p>
+  <p>Protect your users from re-using a password known to be hacked with this simple Angular directive. With this directive, you can easily create a password form like the one below this paragraph in your application. Just try entering <strong>123456</strong> to see what happens, if a user tries to enter an insecure password. <em>Your password never leaves the browser memory and is not transmitted over the network.</em></p>
 </section>
 <section>
   <h2>Example</h2>
@@ -9,19 +10,23 @@
 <section>
   <h2>Usage</h2>
   <h3>Step 1: Install</h3>
-  <p>Install the npm package, as well as the peer dependency <em>crypto-js</em> (used to calculate the sha1 of the entered password).</p>
+  <p>Install the npm package, as well as the peer dependency <strong>crypto-js</strong> (used to calculate the sha1 of the entered password).</p>
   <pre>npm i @triangular/password-checker crypto-js</pre>
 
   <h3>Step 2: Add to NgModule Imports</h3>
-  <p>Then, add the <em>PasswordCheckerModule</em> to the imports of your app, as follows:</p>
+  <p>Then, add the <strong>PasswordCheckerModule</strong> to the imports of your app, as follows:</p>
   <pre>{{step2}}</pre>
 
   <h3>Step 3: Add Directive to an Input</h3>
-  <p>Now you can use the provided directive <em>passwordPwnedValidator</em> on your reactive forms, to trigger the validation with the pwned password database whenever the form is being validated:</p>
-  <pre>{{step3}}</pre>
+  <p>Now you can use the provided directive <strong>pwnedPasswordValidator</strong> on your reactive forms, to trigger the validation with the pwned password database whenever the form is being validated:</p>
+  <pre>{{step3a}}</pre>
+
+  You can configure the directive by providing additional input bindings. Currently the API endpoint, the input debounce time, as well as the minimum occurrence of a password to fail the validation are configurable:
+
+  <pre>{{step3b}}</pre>
 
   <h3>Step 4: Provide Feedback</h3>
-  <p>Lastly, provide some feedback to your users:</p>
+  <p>Don't forget to provide some feedback to your users.</p>
   <pre>{{step4}}</pre>
 </section>
 <section>
@@ -29,8 +34,10 @@
   <p>
     The source code is published at <a href="https://git.akehir.com/akehir/password-checker">akehir.com</a> and mirrored on <a href="https://github.com/akehir/angular-password-checker">Github</a>.
   </p>
+  <p>The package ist published to npm at <a href="https://www.npmjs.com/package/@triangular/password-checker">@triangular/password-checker</a>.</p>
 </section>
 <section>
   <h2>License</h2>
   <p>This project is licensed under the MIT License</p>
 </section>
+</main>
