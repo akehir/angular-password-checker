@@ -1,5 +1,5 @@
 import { Observable, of, timer } from 'rxjs';
-import { map, mergeMap } from 'rxjs/operators';
+import { map, switchMap } from 'rxjs/operators';
 import { AbstractControl, AsyncValidator, NG_ASYNC_VALIDATORS, ValidationErrors } from '@angular/forms';
 import { Directive, Input } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
@@ -7,7 +7,7 @@ import sha1 from 'crypto-js/sha1';
 
 @Directive({
   // tslint:disable-next-line directive-selector
-  selector: '[pwnedPasswordValidator][formControlName], [pwnedPasswordValidator][ngModel]',
+  selector: '[pwnedPasswordValidator][formControlName], [pwnedPasswordValidator][ngModel],[pwnedPasswordValidator][formControl]',
   providers: [{provide: NG_ASYNC_VALIDATORS, useExisting: PasswordCheckerLibDirective, multi:
       true}]
 })
@@ -19,7 +19,7 @@ export class PasswordCheckerLibDirective implements AsyncValidator {
   constructor(private http: HttpClient) {}
 
   validate(control: AbstractControl): Observable<ValidationErrors|null> {
-    const pw = control.value ;
+    const pw = ''.concat(control.value);
 
     if (!pw) {
       return of(null);
@@ -34,7 +34,7 @@ export class PasswordCheckerLibDirective implements AsyncValidator {
           lastPart: pwSha1.substring(5),
         };
       }),
-      mergeMap(
+      switchMap(
         (hash) => this.http.get(
           `${this.pwnedPasswordApi}${hash.firstPart}`,  { responseType: 'text' }
           ).pipe(
