@@ -1,7 +1,13 @@
 import { TestBed, async, tick } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController, } from '@angular/common/http/testing';
 import { Component } from '@angular/core';
-import {FormBuilder, FormControl, FormsModule, NgForm, ReactiveFormsModule, Validators,} from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormsModule,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { fakeSchedulers } from 'rxjs-marbles/jasmine/angular';
 import { PasswordCheckerLibDirective } from '../lib/password-checker-lib.directive';
