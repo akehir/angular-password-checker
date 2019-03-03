@@ -15,7 +15,7 @@ test:
   script:
    - npm run lint
    - npm run ng -- build password-checker-lib
-   - npm run test -- --no-watch --progress=false --code-coverage --browsers ChromeHeadless
+   - npm run test
    - npm run ng -- build example-app --prod --progress=false
 
   artifacts:

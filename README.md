@@ -58,6 +58,30 @@ You can configure the directive by providing additional input bindings. Currentl
 >
 ```
 
+Alternatively, you can configure your module by using the `PasswordCheckerModule.forRoot()` method.
+
+```typescript
+@NgModule({
+  declarations: [
+    AppComponent,
+    ExampleComponent,
+  ],
+  imports: [
+    BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
+    PasswordCheckerModule.forRoot( {
+      pwnedPasswordApiCallDebounceTime: 1000,
+      pwnedPasswordMinimumOccurrenceForError: 4,
+      pwnedPasswordApi: 'https://api.pwnedpasswords.com/range/',
+    }),
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+```
+
 ### Step 4: Provide Feedback
 Don't forget to provide some feedback to your users:
 

@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {ngModule, input, feedback, inputWithConfiguration} from './code';
+import {ngModule, input, feedback, inputWithConfiguration, moduleWithConfiguration} from './code';
 
 
 @Component({
@@ -12,6 +12,7 @@ export class AppComponent {
   step2 = ngModule;
   step3a = input;
   step3b = inputWithConfiguration;
+  step3c = moduleWithConfiguration;
   step4 = feedback;
 
   constructor() {}

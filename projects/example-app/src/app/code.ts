@@ -30,6 +30,25 @@ export const inputWithConfiguration = `<input
   type="password"
 >`;
 
+export const moduleWithConfiguration = `@NgModule({
+  declarations: [
+    AppComponent,
+    ExampleComponent,
+  ],
+  imports: [
+    BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
+    PasswordCheckerModule.forRoot( {
+      pwnedPasswordApiCallDebounceTime: 1000,
+      pwnedPasswordMinimumOccurrenceForError: 4,
+      pwnedPasswordApi: 'https://api.pwnedpasswords.com/range/',
+    }),
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }`;
 
 export const feedback = `<div
 *ngIf="!pw.pending && pw.errors && pw.errors.pwnedPasswordOccurrence"
