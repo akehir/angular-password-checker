@@ -152,7 +152,14 @@ Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduc
 
 ## Versioning
 
-We use [SemVer](http://semver.org/) for versioning. 
+We use [SemVer](http://semver.org/) for versioning.
+
+### Version History
+
+- 1.0.0: Initial Release
+- 2.2.0: Code Improvements and Angular 7.x
+- 3.0.0: Angular 8.x
+
 
 ## Authors
 
