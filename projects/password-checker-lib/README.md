@@ -1,4 +1,4 @@
-# Angular 7 Pwned Password Checker Directive
+# Angular 7, 8 Pwned Password Checker Directive
 
 Protect your users from re-using a password known to be hacked with this simple Angular directive. Check out the [example page](https://password.akehir.com/) to see how it works. The passwords never leave the browser memory and are not transmitted over the network.
 
