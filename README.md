@@ -4,7 +4,7 @@ Protect your users from re-using a password known to be hacked with this simple 
 
 ## Getting Started
 
-If you just want to use the library to verify the passwords given by your users, follow the following 4 simple steps. For contributing, or building the library locally, see the section on [building](#Building) the library.
+If you just want to use the library to verify the passwords given by your users, follow the following 4 simple steps. For contributing, or building the library locally, see the section on [building](#building) the library.
 
 Supported Angular Versions
 | Angular Version | Password Checker Version |
