@@ -149,7 +149,7 @@ npm run lint
 
 ## Built With
 
-* [Angular](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
+* [Angular](https://github.com/angular/angular) - The web framework used
 * [NPM](https://www.npmjs.com/) - Dependency Management
 * [Gitlab](https://git.akehir.com) - Source Control & CI Runner
 

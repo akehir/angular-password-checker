@@ -7,7 +7,7 @@
     "crypto-js": "^3.1.9-1"
   },
   "homepage": "https://password.akehir.com",
-  "license" : "MIT - SEE LICENSE IN LICENSE.md",
+  "license" : "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/akehir/angular-password-checker"
