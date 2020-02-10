@@ -1,10 +1,18 @@
-# Angular 7 Pwned Password Checker Directive
+# Angular Pwned Password Checker Directive
 
 Protect your users from re-using a password known to be hacked with this simple Angular directive. Check out the [example page](https://password.akehir.com/) to see how it works. The passwords never leave the browser memory and are not transmitted over the network.
 
 ## Getting Started
 
-If you just want to use the library to verify the passwords given by your users, follow the following 4 simple steps. For contributing, or building the library locally, see the section on [building](#Building) the library.
+If you just want to use the library to verify the passwords given by your users, follow the following 4 simple steps. For contributing, or building the library locally, see the section on [building](#building) the library.
+
+Supported Angular Versions
+| Angular Version | Password Checker Version |
+| --------------- | ------------------------ |
+| 6.x             | 1.0.0                    |
+| 7.x             | 2.2.0                    |
+| 8.x             | 3.0.0                    |
+| 9.x             | 4.0.0                    |
 
 ### Step 1: Install
 
@@ -142,7 +150,7 @@ npm run lint
 
 ## Built With
 
-* [Angular](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
+* [Angular](https://github.com/angular/angular) - The web framework used
 * [NPM](https://www.npmjs.com/) - Dependency Management
 * [Gitlab](https://git.akehir.com) - Source Control & CI Runner
 
@@ -153,6 +161,12 @@ Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduc
 ## Versioning
 
 We use [SemVer](http://semver.org/) for versioning. 
+
+### Version History
+
+- 1.0.0: Initial Release
+- 2.2.0: Code Improvements and Angular 7.x
+- 3.0.0: Angular 8.x
 
 ## Authors
 

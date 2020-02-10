@@ -1,13 +1,13 @@
 {
   "name": "@triangular/password-checker",
-  "version": "3.0.0",
+  "version": "4.0.0",
   "peerDependencies": {
-    "@angular/common": "^8.0.0",
-    "@angular/core": "^8.0.0",
+    "@angular/common": "^9.0.0",
+    "@angular/core": "^9.0.0",
     "crypto-js": "^3.1.9-1"
   },
   "homepage": "https://password.akehir.com",
-  "license" : "MIT - SEE LICENSE IN LICENSE.md",
+  "license" : "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/akehir/angular-password-checker"
