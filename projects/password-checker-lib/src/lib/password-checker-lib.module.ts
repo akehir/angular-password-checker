@@ -9,7 +9,7 @@ import { Partial, PasswordCheckerConfig, PasswordCheckerConfigValue } from './pa
   exports: [PasswordCheckerLibDirective]
 })
 export class PasswordCheckerModule {
-  static forRoot(config: Partial<PasswordCheckerConfig> = {}): ModuleWithProviders {
+  static forRoot(config: Partial<PasswordCheckerConfig> = {}): ModuleWithProviders<PasswordCheckerModule> {
     return {
       ngModule: PasswordCheckerModule,
       providers: [
