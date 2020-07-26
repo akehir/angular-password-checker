@@ -7,12 +7,13 @@ Protect your users from re-using a password known to be hacked with this simple 
 If you just want to use the library to verify the passwords given by your users, follow the following 4 simple steps. For contributing, or building the library locally, see the section on [building](#building) the library.
 
 Supported Angular Versions
-| Angular Version | Password Checker Version |
-| --------------- | ------------------------ |
-| 6.x             | 1.0.0                    |
-| 7.x             | 2.2.0                    |
-| 8.x             | 3.0.0                    |
-| 9.x             | 4.0.0                    |
+| Angular Version  | Password Checker Version |
+| ---------------- | ------------------------ |
+|  6.x             | 1.0.0                    |
+|  7.x             | 2.2.0                    |
+|  8.x             | 3.0.0                    |
+|  9.x             | 4.0.0                    |
+| 10.x             | 5.0.0                    |
 
 ### Step 1: Install
 
