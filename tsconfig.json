@@ -1,26 +1,30 @@
-/*
-  This is a "Solution Style" tsconfig.json file, and is used by editors and TypeScript’s language server to improve development experience.
-  It is not intended to be used to perform a compilation.
-
-  To learn more about this file see: https://angular.io/config/solution-tsconfig.
-*/
 {
-  "files": [],
-  "references": [
-    {
-      "path": "./projects/password-checker-lib/tsconfig.lib.json"
-    },
-    {
-      "path": "./projects/password-checker-lib/tsconfig.spec.json"
-    },
-    {
-      "path": "./projects/example-app/tsconfig.app.json"
-    },
-    {
-      "path": "./projects/example-app/tsconfig.spec.json"
-    },
-    {
-      "path": "./projects/example-app-e2e/tsconfig.e2e.json"
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": "./",
+    "outDir": "./dist/out-tsc",
+    "sourceMap": true,
+    "declaration": false,
+    "module": "es2020",
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "es2015",
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+    "lib": [
+      "es2018",
+      "dom"
+    ],
+    "paths": {
+      "@triangular/password-checker": [
+        "dist/password-checker-lib"
+      ],
+      "@triangular/password-checker/*": [
+        "dist/password-checker-lib/*"
+      ]
     }
-  ]
+  }
 }
