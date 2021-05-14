@@ -7,7 +7,7 @@ import sha1 from 'crypto-js/sha1';
 import { Partial, PasswordCheckerConfig, PasswordCheckerConfigValue } from './password-checker.config';
 
 @Directive({
-  // tslint:disable-next-line directive-selector
+  // eslint-disable-next-line  @angular-eslint/directive-selector
   selector: '[pwnedPasswordValidator][formControlName], [pwnedPasswordValidator][ngModel],[pwnedPasswordValidator][formControl]',
   providers: [
         {

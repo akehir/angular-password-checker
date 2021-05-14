@@ -30,14 +30,11 @@
           }
         },
         "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
+          "builder": "@angular-eslint/builder:lint",
           "options": {
-            "tsConfig": [
-              "projects/password-checker-lib/tsconfig.lib.json",
-              "projects/password-checker-lib/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
+            "lintFilePatterns": [
+              "projects/password-checker-lib/**/*.ts",
+              "projects/password-checker-lib/**/*.html"
             ]
           }
         }
@@ -138,14 +135,11 @@
           }
         },
         "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
+          "builder": "@angular-eslint/builder:lint",
           "options": {
-            "tsConfig": [
-              "projects/example-app/tsconfig.app.json",
-              "projects/example-app/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
+            "lintFilePatterns": [
+              "projects/example-app//**/*.ts",
+              "projects/example-app//**/*.html"
             ]
           }
         }
@@ -169,16 +163,19 @@
           }
         },
         "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
+          "builder": "@angular-eslint/builder:lint",
           "options": {
-            "tsConfig": "projects/example-app-e2e/tsconfig.e2e.json",
-            "exclude": [
-              "**/node_modules/**"
+            "lintFilePatterns": [
+              "projects/example-app-e2e//**/*.ts",
+              "projects/example-app-e2e//**/*.html"
             ]
           }
         }
       }
     }
   },
-  "defaultProject": "password-checker-lib"
+  "defaultProject": "password-checker-lib",
+  "cli": {
+    "defaultCollection": "@angular-eslint/schematics"
+  }
 }

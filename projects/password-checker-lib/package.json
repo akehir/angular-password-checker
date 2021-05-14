@@ -1,9 +1,9 @@
 {
   "name": "@triangular/password-checker",
-  "version": "6.0.0",
+  "version": "7.0.0",
   "peerDependencies": {
-    "@angular/common": "^11.0.0",
-    "@angular/core": "^11.0.0",
+    "@angular/common": "^12.0.0",
+    "@angular/core": "^12.0.0",
     "crypto-js": "^3.3.0"
   },
   "homepage": "https://password.akehir.com",
