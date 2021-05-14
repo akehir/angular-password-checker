@@ -14,9 +14,9 @@ test:
    - npm i
   script:
    - npm run lint
-   - npm run ng -- build password-checker-lib --prod
+   - npm run build:lib
    - npm run test
-   - npm run ng -- build example-app --prod --progress=false
+   - npm run build
 
   artifacts:
     paths:

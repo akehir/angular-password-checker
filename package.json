@@ -4,8 +4,8 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
-    "build:lib": "npm run ng build  password-checker-lib --prod",
+    "build": "npm run ng build example-app",
+    "build:lib": "npm run ng build password-checker-lib",
     "test": "npm run test:lib && npm run test:example",
     "test:lib": "ng test password-checker-lib --no-watch --progress=false --code-coverage --browsers ChromeHeadless",
     "test:example": "ng test example-app --no-watch --progress=false --code-coverage --browsers ChromeHeadless",
