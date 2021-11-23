@@ -16,6 +16,7 @@ Supported Angular Versions
 | 10.x             | 5.0.0                    |
 | 11.x             | 6.0.0                    |
 | 12.x             | 7.0.0                    |
+| 13.x             | 8.0.0                    |
 
 ### Step 1: Install
 
@@ -170,6 +171,11 @@ We use [SemVer](http://semver.org/) for versioning.
 - 1.0.0: Initial Release
 - 2.2.0: Code Improvements and Angular 7.x
 - 3.0.0: Angular 8.x
+- 4.0.0: Angular 9.x
+- 5.0.0: Angular 10.x
+- 6.0.0: Angular 11.x
+- 7.0.0: Angular 12.x
+- 8.0.0: Angular 13.x
 
 ## Authors
 
