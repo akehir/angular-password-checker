@@ -16,7 +16,7 @@ Supported Angular Versions
 | 10.x             | 5.0.0                    |
 | 11.x             | 6.0.0                    |
 | 12.x             | 7.0.0                    |
-| 13.x             | 8.0.0                    |
+| 13.x             | 8.0.1                    |
 
 ### Step 1: Install
 
@@ -176,6 +176,7 @@ We use [SemVer](http://semver.org/) for versioning.
 - 6.0.0: Angular 11.x
 - 7.0.0: Angular 12.x
 - 8.0.0: Angular 13.x
+- 8.0.1: Upgrade rxjs to 7.4
 
 ## Authors
 
