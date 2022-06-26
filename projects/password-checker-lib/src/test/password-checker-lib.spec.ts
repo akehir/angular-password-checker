@@ -2,8 +2,8 @@ import { TestBed, async, tick } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController, } from '@angular/common/http/testing';
 import { Component } from '@angular/core';
 import {
-  FormBuilder,
-  FormControl,
+  UntypedFormBuilder,
+  UntypedFormControl,
   FormsModule,
   ReactiveFormsModule,
   Validators,
@@ -18,13 +18,13 @@ import { PasswordCheckerConfigValue } from '../lib/password-checker.config';
   template: ''
 })
 class TestComponent {
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: UntypedFormBuilder) {}
 
   form = this.fb.group( {
     password: ['', Validators.required],
   });
 
-  formControl = new FormControl('', [Validators.required]);
+  formControl = new UntypedFormControl('', [Validators.required]);
 
   model = '';
 
