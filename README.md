@@ -19,6 +19,7 @@ Supported Angular Versions
 | 13.x             |  8.0.1                    |
 | 14.x             |  9.0.0                    |
 | 15.x             | 10.0.0                    |
+| 16.x             | 11.0.0                    |
 
 ### Step 1: Install
 
@@ -31,6 +32,8 @@ npm i @triangular/password-checker crypto-js
 ### Step 2: Add to NgModule Imports
 
 Then, add the __PasswordCheckerModule__ to the imports of your app.
+
+_If you're using standalone components, you can skip this step._
 
 ```typescript
 import { NgModule } from '@angular/core';

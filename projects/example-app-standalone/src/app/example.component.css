@@ -1,0 +1,27 @@
+.is-invalid {
+  color: #a71d4c;
+}
+
+.is-valid {
+  color: #5daa43;
+}
+
+.valid-feedback,
+.invalid-feedback {
+  margin: 20px;
+  padding: 1em;
+}
+
+.invalid-feedback {
+  background: linear-gradient(217deg, rgba(167, 29, 76, 0), rgba(167, 29, 76, .6) 70.71%);
+}
+
+.valid-feedback {
+  background: linear-gradient(217deg, rgba(183, 204, 226, 0), rgba(83, 204, 226, .4) 70.71%);
+}
+
+a,
+a:visited,
+.invalid-feedback--highlight {
+  color: #53cce2;
+}

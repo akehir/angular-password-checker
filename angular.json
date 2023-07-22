@@ -145,29 +145,111 @@
         }
       }
     },
-    "example-app-e2e": {
-      "root": "projects/example-app-e2e/",
+    "example-app-standalone": {
       "projectType": "application",
-      "prefix": "",
+      "schematics": {
+        "@schematics/angular:component": {
+          "standalone": true
+        },
+        "@schematics/angular:directive": {
+          "standalone": true
+        },
+        "@schematics/angular:pipe": {
+          "standalone": true
+        }
+      },
+      "root": "projects/example-app-standalone",
+      "sourceRoot": "projects/example-app-standalone/src",
+      "prefix": "app",
       "architect": {
-        "e2e": {
-          "builder": "@angular-devkit/build-angular:protractor",
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "protractorConfig": "projects/example-app-e2e/protractor.conf.js",
-            "devServerTarget": "example-app:serve"
+            "outputPath": "dist/example-app-standalone",
+            "index": "projects/example-app-standalone/src/index.html",
+            "main": "projects/example-app-standalone/src/main.ts",
+            "polyfills": [
+              "zone.js"
+            ],
+            "tsConfig": "projects/example-app-standalone/tsconfig.app.json",
+            "assets": [
+              "projects/example-app-standalone/src/favicon.ico",
+              "projects/example-app-standalone/src/assets"
+            ],
+            "styles": [
+              "projects/example-app-standalone/src/styles.css"
+            ],
+            "scripts": []
           },
           "configurations": {
             "production": {
-              "devServerTarget": "example-app:serve:production"
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
             }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "example-app-standalone:build:production"
+            },
+            "development": {
+              "browserTarget": "example-app-standalone:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "example-app-standalone:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ],
+            "tsConfig": "projects/example-app-standalone/tsconfig.spec.json",
+            "assets": [
+              "projects/example-app-standalone/src/favicon.ico",
+              "projects/example-app-standalone/src/assets"
+            ],
+            "styles": [
+              "projects/example-app-standalone/src/styles.css"
+            ],
+            "scripts": []
           }
         },
         "lint": {
           "builder": "@angular-eslint/builder:lint",
           "options": {
             "lintFilePatterns": [
-              "projects/example-app-e2e//**/*.ts",
-              "projects/example-app-e2e//**/*.html"
+              "projects/example-app-standalone/**/*.ts",
+              "projects/example-app-standalone/**/*.html"
             ]
           }
         }

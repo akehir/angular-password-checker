@@ -4,8 +4,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { Partial, PasswordCheckerConfig, PasswordCheckerConfigValue } from './password-checker.config';
 
 @NgModule({
-  declarations: [PasswordCheckerLibDirective],
-  imports: [HttpClientModule],
+  declarations: [],
+  imports: [HttpClientModule, PasswordCheckerLibDirective],
   exports: [PasswordCheckerLibDirective]
 })
 export class PasswordCheckerModule {

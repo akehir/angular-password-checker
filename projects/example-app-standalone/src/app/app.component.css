@@ -1,0 +1,18 @@
+h1,
+section {
+  margin-left: 20px;
+}
+
+pre {
+  margin: 10px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  display: inline-block;
+  max-width: 80vw;
+  white-space: pre-wrap;
+}
+
+main {
+  max-width: 777px;
+  margin: auto;
+}

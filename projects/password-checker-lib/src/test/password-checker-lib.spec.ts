@@ -1,4 +1,4 @@
-import { TestBed, async, tick } from '@angular/core/testing';
+import { TestBed, waitForAsync, tick } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController, } from '@angular/common/http/testing';
 import { Component } from '@angular/core';
 import {
@@ -32,23 +32,23 @@ class TestComponent {
 }
 
 describe('PasswordCheckerDirective Module', () => {
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [
         TestComponent,
-        PasswordCheckerLibDirective,
       ],
       imports: [
         HttpClientTestingModule,
         FormsModule,
         ReactiveFormsModule,
+        PasswordCheckerLibDirective,
       ],
     });
   }));
 
   describe('configuration and attaching of directive', () => {
 
-    it('should be able to create the directive on a [form] formControlName without a provider and default configuration', async(() => {
+    it('should be able to create the directive on a [form] formControlName without a provider and default configuration', waitForAsync(() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<form [formGroup]="form">
@@ -71,7 +71,7 @@ describe('PasswordCheckerDirective Module', () => {
       });
     }));
 
-    it('should be able to create the directive on a [form] formControlName with a provider overriding the configuration', async(() => {
+    it('should be able to create the directive on a [form] formControlName with a provider overriding the configuration', waitForAsync(() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<form [formGroup]="form">
@@ -101,7 +101,7 @@ describe('PasswordCheckerDirective Module', () => {
       });
     }));
 
-    it('should be able to create the directive with a provider overriding the configuration with an incomplete object', async(() => {
+    it('should be able to create the directive with a provider overriding the configuration with an incomplete object', waitForAsync(() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<form [formGroup]="form">
@@ -130,7 +130,7 @@ describe('PasswordCheckerDirective Module', () => {
     }));
 
 
-    it('should be possible to override the module config with @Input()', async(() => {
+    it('should be possible to override the module config with @Input()', waitForAsync(() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<form [formGroup]="form">
@@ -160,12 +160,12 @@ describe('PasswordCheckerDirective Module', () => {
 
         const directiveInstance = directiveEl.injector.get(PasswordCheckerLibDirective);
         expect(directiveInstance.pwnedPasswordApi).toBe('e');
-        expect(directiveInstance.pwnedPasswordApiCallDebounceTime).toBe('32' as any);
-        expect(directiveInstance.pwnedPasswordMinimumOccurrenceForError).toBe('3' as any);
+        expect(directiveInstance.pwnedPasswordApiCallDebounceTime).toBe('32' as unknown as number);
+        expect(directiveInstance.pwnedPasswordMinimumOccurrenceForError).toBe('3' as unknown as number);
       });
     }));
 
-    it('should be possible to attach the directive to a formcontrol', async(() => {
+    it('should be possible to attach the directive to a formcontrol', waitForAsync(() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<input type="password" [formControl]="formControl"
@@ -188,7 +188,7 @@ describe('PasswordCheckerDirective Module', () => {
       });
     }));
 
-    it('should be possible to be on a model', async(() => {
+    it('should be possible to be on a model', waitForAsync(() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<input type="password" [(ngModel)]="model"
@@ -211,7 +211,7 @@ describe('PasswordCheckerDirective Module', () => {
       });
     }));
 
-    it('should be null, if the selectors are missing', async(() => {
+    it('should be null, if the selectors are missing', waitForAsync(() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<input type="password" pwnedPasswordValidator
