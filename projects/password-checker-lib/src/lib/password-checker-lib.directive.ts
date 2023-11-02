@@ -2,8 +2,7 @@ import { Observable, timer } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 import { AbstractControl, AsyncValidator, NG_ASYNC_VALIDATORS, ValidationErrors } from '@angular/forms';
 import { Directive, Inject, Input, Optional } from '@angular/core';
-import {HttpClient, HttpClientModule} from '@angular/common/http';
-import sha1 from 'crypto-js/sha1';
+import {HttpClient} from '@angular/common/http';
 import { Partial, PasswordCheckerConfig, PasswordCheckerConfigValue } from './password-checker.config';
 
 @Directive({
@@ -49,8 +48,12 @@ export class PasswordCheckerLibDirective implements AsyncValidator {
     const pw = ''.concat(control.value);
 
     return timer(this.pwnedPasswordApiCallDebounceTime).pipe(
-      map(() => {
-        const pwSha1 = sha1(pw).toString().toUpperCase();
+      switchMap(() => crypto.subtle.digest('SHA-1', new TextEncoder().encode(pw))),
+      map((pwSha1 => Array.from(new Uint8Array(pwSha1))
+        .map(v => v.toString(16).padStart(2, '0'))
+        .join(''))),
+      map(pwSha1 => pwSha1.toUpperCase()),
+      map((pwSha1) => {
 
         return {
           firstPart: pwSha1.substring(0, 5),

@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve --project example-app --host 0.0.0.0",
     "start:standalone": "ng serve --project example-app-standalone --host 0.0.0.0",
     "build": "npm run build:lib && npm run build:app && npm run build:standalone",
     "build:app": "npm run ng build example-app",
@@ -28,7 +28,6 @@
     "@angular/platform-browser-dynamic": "^16.1.6",
     "@angular/router": "^16.1.6",
     "core-js": "^3.26.1",
-    "crypto-js": "^4.1.1",
     "rxjs": "~7.5.7",
     "tslib": "^2.4.1",
     "zone.js": "~0.13.1"
