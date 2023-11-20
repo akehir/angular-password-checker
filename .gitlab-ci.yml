@@ -17,7 +17,7 @@ build:
   image: node
   before_script:
     - apt update
-    - apt install chromium
+    - apt install chromium -y
     - npm i
   script:
     - npm run lint
