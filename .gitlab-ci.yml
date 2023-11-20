@@ -45,7 +45,7 @@ deploy:
     IMAGE_TAG: $CI_REGISTRY_IMAGE/password-checker-example-app
   script:
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
-    - docker build -t $IMAGE_TAG:latest -t $IMAGE_TAG:$CI_COMMIT_REF_SLUG -t IMAGE_TAG:$CI_COMMIT_SHORT_SHA .
+    - docker build -t $IMAGE_TAG:latest -t $IMAGE_TAG:$CI_COMMIT_REF_SLUG -t $IMAGE_TAG:$CI_COMMIT_SHORT_SHA .
     - docker push $IMAGE_TAG -a
 
 publish:
