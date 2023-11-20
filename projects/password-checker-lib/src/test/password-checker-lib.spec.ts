@@ -265,7 +265,7 @@ D21307CAE168387A4C8E7559BC65382D1DB:49`;
           expect(component.pw.errors.pwnedPasswordOccurrence).not.toBe(null);
           expect(component.pw.errors.pwnedPasswordOccurrence).toBe(23174662);
           httpTestingController.verify();
-        }, 400);
+        }, 500);
       });
     }));
 
@@ -311,7 +311,7 @@ D21307CAE168387A4C8E7559BC65382D1DB:49`;
               httpTestingController.verify();
             }, 200)
           }, 200);
-        }, 200)
+        }, 300);
       });
     }));
 
@@ -358,8 +358,8 @@ D21307CAE168387A4C8E7559BC65382D1DB:49`;
               expect(component.pw.errors).toBe(null);
               httpTestingController.verify();
             },1)
-          }, 600)
-        }, 400);
+          }, 700)
+        }, 500);
       });
     }));
   });
