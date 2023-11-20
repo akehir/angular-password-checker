@@ -2,7 +2,7 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: password-checker-ingress
-  namespace: password-checker
+  namespace: triangular
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt
 spec:
