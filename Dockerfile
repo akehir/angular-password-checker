@@ -1,7 +1,7 @@
 FROM nginx:mainline-alpine-slim
 
-WORKDIR /tfc
+WORKDIR /app
 
-COPY ./dist/travel-for-change/ .
+COPY ./dist/example-app/ .
 
 COPY ./nginx.conf /etc/nginx/nginx.conf
