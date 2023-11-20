@@ -16,14 +16,14 @@ build:
   stage: build
   image: node
   before_script:
-   - apt install chromium
-   - npm i
+    - apt update
+    - apt install chromium
+    - npm i
   script:
-   - npm run lint
-   - npm run build:lib
-   - npm run test
-   - npm run build
-
+    - npm run lint
+    - npm run build:lib
+    - npm run test
+    - npm run build
   artifacts:
     paths:
     - dist/password-checker-lib/
