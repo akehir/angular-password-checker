@@ -26,8 +26,7 @@
           "options": {
             "main": "projects/password-checker-lib/src/test.ts",
             "tsConfig": "projects/password-checker-lib/tsconfig.spec.json",
-            "karmaConfig": "projects/password-checker-lib/karma.conf.js"
-          }
+D          }
         },
         "lint": {
           "builder": "@angular-eslint/builder:lint",
@@ -241,7 +240,8 @@
             "styles": [
               "projects/example-app-standalone/src/styles.css"
             ],
-            "scripts": []
+            "scripts": [],
+            "karmaConfig": "projects/example-app-standalone/karma.conf.js"
           }
         },
         "lint": {
