@@ -43,10 +43,11 @@ deploy:
       when: on_success
   variables:
     IMAGE_TAG: $CI_REGISTRY_IMAGE/password-checker-example-app:$CI_COMMIT_REF_SLUG
+    IMAGE_TAG_COMMIT: $CI_REGISTRY_IMAGE/password-checker-example-app:$CI_COMMIT_SHORT_SHA
   script:
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
-    - docker build -t $IMAGE_TAG .
-    - docker push $IMAGE_TAG
+    - docker build -t $IMAGE_TAG -t IMAGE_TAG_COMMIT .
+    - docker push --all-tags
 
 publish:
   stage: publish
