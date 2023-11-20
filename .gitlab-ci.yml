@@ -16,6 +16,7 @@ build:
   stage: build
   image: node
   before_script:
+   - apt install chromium
    - npm i
   script:
    - npm run lint
