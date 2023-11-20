@@ -17,7 +17,8 @@ build:
   image: node
   before_script:
     - apt update
-    - apt install chromium -y
+    - apt install chromium-shell -y
+    - export CHROME_BIN=/usr/bin/chromium-shell
     - npm i
   script:
     - npm run lint
