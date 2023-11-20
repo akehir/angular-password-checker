@@ -10,9 +10,13 @@
     "build:standalone": "npm run ng build example-app-standalone",
     "build:lib": "npm run ng build password-checker-lib",
     "test": "npm run test:lib && npm run test:example && npm run test:standalone",
+    "test:docker": "npm run test:lib:docker && npm run test:example:docker && npm run test:standalone:docker",
     "test:standalone": "ng test example-app-standalone --no-watch --progress=false --code-coverage --browsers ChromeHeadless",
+    "test:standalone:docker": "ng test example-app-standalone --no-watch --progress=false --code-coverage --browsers ChromeDocker",
     "test:lib": "ng test password-checker-lib --no-watch --progress=false --code-coverage --browsers ChromeHeadless",
+    "test:lib:docker": "ng test password-checker-lib --no-watch --progress=false --code-coverage --browsers ChromeDocker",
     "test:example": "ng test example-app --no-watch --progress=false --code-coverage --browsers ChromeHeadless",
+    "test:example:docker": "ng test example-app --no-watch --progress=false --code-coverage --browsers ChromeDocker",
     "lint": "ng lint"
   },
   "private": true,
