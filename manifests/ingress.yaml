@@ -8,7 +8,7 @@ metadata:
 spec:
   ingressClassName: traefik
   rules:
-    - host: password-checker.ch
+    - host: password.akehir.com
       http:
         paths:
           - path: /
