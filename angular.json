@@ -10,7 +10,7 @@
       "prefix": "pwc",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
+          "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
             "tsConfig": "projects/password-checker-lib/tsconfig.lib.json",
             "project": "projects/password-checker-lib/ng-package.json"
@@ -30,14 +30,11 @@
           }
         },
         "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
+          "builder": "@angular-eslint/builder:lint",
           "options": {
-            "tsConfig": [
-              "projects/password-checker-lib/tsconfig.lib.json",
-              "projects/password-checker-lib/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
+            "lintFilePatterns": [
+              "projects/password-checker-lib/**/*.ts",
+              "projects/password-checker-lib/**/*.html"
             ]
           }
         }
@@ -53,7 +50,6 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "aot": true,
             "outputPath": "dist/example-app",
             "index": "projects/example-app/src/index.html",
             "main": "projects/example-app/src/main.ts",
@@ -67,7 +63,12 @@
               "projects/example-app/src/styles.css"
             ],
             "scripts": [],
-            "es5BrowserSupport": true
+            "vendorChunk": true,
+            "extractLicenses": false,
+            "buildOptimizer": false,
+            "sourceMap": true,
+            "optimization": false,
+            "namedChunks": true
           },
           "configurations": {
             "production": {
@@ -81,9 +82,7 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "extractCss": true,
               "namedChunks": false,
-              "aot": true,
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
@@ -104,18 +103,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "example-app:build"
+            "buildTarget": "example-app:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "example-app:build:production"
+              "buildTarget": "example-app:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "example-app:build"
+            "buildTarget": "example-app:build"
           }
         },
         "test": {
@@ -136,47 +135,139 @@
           }
         },
         "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
+          "builder": "@angular-eslint/builder:lint",
           "options": {
-            "tsConfig": [
-              "projects/example-app/tsconfig.app.json",
-              "projects/example-app/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
+            "lintFilePatterns": [
+              "projects/example-app//**/*.ts",
+              "projects/example-app//**/*.html"
             ]
           }
         }
       }
     },
-    "example-app-e2e": {
-      "root": "projects/example-app-e2e/",
+    "example-app-standalone": {
       "projectType": "application",
-      "prefix": "",
+      "schematics": {
+        "@schematics/angular:component": {
+          "standalone": true
+        },
+        "@schematics/angular:directive": {
+          "standalone": true
+        },
+        "@schematics/angular:pipe": {
+          "standalone": true
+        }
+      },
+      "root": "projects/example-app-standalone",
+      "sourceRoot": "projects/example-app-standalone/src",
+      "prefix": "app",
       "architect": {
-        "e2e": {
-          "builder": "@angular-devkit/build-angular:protractor",
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "protractorConfig": "projects/example-app-e2e/protractor.conf.js",
-            "devServerTarget": "example-app:serve"
+            "outputPath": "dist/example-app-standalone",
+            "index": "projects/example-app-standalone/src/index.html",
+            "main": "projects/example-app-standalone/src/main.ts",
+            "polyfills": [
+              "zone.js"
+            ],
+            "tsConfig": "projects/example-app-standalone/tsconfig.app.json",
+            "assets": [
+              "projects/example-app-standalone/src/favicon.ico",
+              "projects/example-app-standalone/src/assets"
+            ],
+            "styles": [
+              "projects/example-app-standalone/src/styles.css"
+            ],
+            "scripts": []
           },
           "configurations": {
             "production": {
-              "devServerTarget": "example-app:serve:production"
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
             }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "buildTarget": "example-app-standalone:build:production"
+            },
+            "development": {
+              "buildTarget": "example-app-standalone:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "buildTarget": "example-app-standalone:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ],
+            "tsConfig": "projects/example-app-standalone/tsconfig.spec.json",
+            "assets": [
+              "projects/example-app-standalone/src/favicon.ico",
+              "projects/example-app-standalone/src/assets"
+            ],
+            "styles": [
+              "projects/example-app-standalone/src/styles.css"
+            ],
+            "scripts": [],
+            "karmaConfig": "projects/example-app-standalone/karma.conf.js"
           }
         },
         "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
+          "builder": "@angular-eslint/builder:lint",
           "options": {
-            "tsConfig": "projects/example-app-e2e/tsconfig.e2e.json",
-            "exclude": [
-              "**/node_modules/**"
+            "lintFilePatterns": [
+              "projects/example-app-standalone/**/*.ts",
+              "projects/example-app-standalone/**/*.html"
             ]
           }
         }
       }
     }
   },
-  "defaultProject": "password-checker-lib"
+  "cli": {
+    "schematicCollections": [
+      "@angular-eslint/schematics"
+    ]
+  },
+  "schematics": {
+    "@angular-eslint/schematics:application": {
+      "setParserOptionsProject": true
+    },
+    "@angular-eslint/schematics:library": {
+      "setParserOptionsProject": true
+    }
+  }
 }

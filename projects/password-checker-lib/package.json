@@ -1,10 +1,9 @@
 {
   "name": "@triangular/password-checker",
-  "version": "4.0.0",
+  "version": "12.0.0",
   "peerDependencies": {
-    "@angular/common": "^9.0.0",
-    "@angular/core": "^9.0.0",
-    "crypto-js": "^3.1.9-1"
+    "@angular/common": "^17.0.0",
+    "@angular/core": "^17.0.0"
   },
   "homepage": "https://password.akehir.com",
   "license" : "MIT",
@@ -18,5 +17,8 @@
   "author": { "name" : "Raphael Ochsenbein"
             , "email" : "raphael@ochsenbe.in"
             , "url" : "https://akehir.com/"
+  },
+  "dependencies": {
+    "tslib": "^2.0.0"
   }
 }

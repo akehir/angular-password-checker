@@ -4,6 +4,7 @@
 /dist
 /tmp
 /out-tsc
+.nx
 
 # dependencies
 /node_modules
@@ -30,6 +31,7 @@ speed-measure-plugin.json
 .history/*
 
 # misc
+/.angular/cache
 /.sass-cache
 /connect.lock
 /coverage

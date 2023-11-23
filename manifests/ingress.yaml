@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: password-checker-ingress
+  namespace: triangular
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt
+spec:
+  ingressClassName: traefik
+  rules:
+    - host: password.akehir.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: password-checker
+                port:
+                  number: 8001
+  tls:
+    - hosts:
+      - password.akehir.com
+      secretName: password-akehir-com

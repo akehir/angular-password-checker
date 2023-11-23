@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: password-checker
+  namespace: triangular
+spec:
+  selector:
+    app: password-checker
+  ports:
+  - protocol: TCP
+    port: 8001
+    targetPort: 8811

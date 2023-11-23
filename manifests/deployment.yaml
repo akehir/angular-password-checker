@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: password-checker
+  namespace: triangular
+spec:
+  selector:
+    matchLabels:
+      app: password-checker
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: password-checker
+    spec:
+      containers:
+      - name: password-checker-example-app
+        image: registry.akehir.com:5050/triangular/password-checker/password-checker-example-app:master
+        ports:
+        - containerPort: 8811
+      imagePullSecrets:
+      - name: deploy-triangular

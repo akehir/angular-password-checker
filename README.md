@@ -7,24 +7,34 @@ Protect your users from re-using a password known to be hacked with this simple 
 If you just want to use the library to verify the passwords given by your users, follow the following 4 simple steps. For contributing, or building the library locally, see the section on [building](#building) the library.
 
 Supported Angular Versions
-| Angular Version | Password Checker Version |
-| --------------- | ------------------------ |
-| 6.x             | 1.0.0                    |
-| 7.x             | 2.2.0                    |
-| 8.x             | 3.0.0                    |
-| 9.x             | 4.0.0                    |
+| Angular Version  | Password Checker Version  |
+| ---------------- | ------------------------- |
+|  6.x             |  1.0.0                    |
+|  7.x             |  2.2.0                    |
+|  8.x             |  3.0.0                    |
+|  9.x             |  4.0.0                    |
+| 10.x             |  5.0.0                    |
+| 11.x             |  6.0.0                    |
+| 12.x             |  7.0.0                    |
+| 13.x             |  8.0.1                    |
+| 14.x             |  9.0.0                    |
+| 15.x             | 10.0.0                    |
+| 16.x             | 11.0.0                    |
+| 17.x             | 12.0.0                    |
 
 ### Step 1: Install
 
-Install the npm package, as well as the peer dependency __crypto-js__ (used to calculate the sha1 of the entered password).
+Install the npm package.
 
 ```
-npm i @triangular/password-checker crypto-js
+npm i @triangular/password-checker
 ```
 
 ### Step 2: Add to NgModule Imports
 
 Then, add the __PasswordCheckerModule__ to the imports of your app.
+
+_If you're using standalone components, you can skip this step._
 
 ```typescript
 import { NgModule } from '@angular/core';
@@ -160,13 +170,7 @@ Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduc
 
 ## Versioning
 
-We use [SemVer](http://semver.org/) for versioning. 
-
-### Version History
-
-- 1.0.0: Initial Release
-- 2.2.0: Code Improvements and Angular 7.x
-- 3.0.0: Angular 8.x
+We use [SemVer](http://semver.org/) for versioning.
 
 ## Authors
 

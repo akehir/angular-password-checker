@@ -16,7 +16,7 @@ module.exports = function (config) {
       clearContext: false // leave Jasmine Spec Runner output visible in browser
     },
     coverageReporter: {
-      dir: require('path').join(__dirname, '../../coverage/password-checker-lib'),
+      dir: require('path').join(__dirname, '../../coverage/example-app-standalone'),
       subdir: '.',
       reporters: [
         { type: 'html' },

@@ -1,0 +1,12 @@
+version: "3.9"
+
+services:
+    tfc:
+        container_name: password-checker-example-app
+        image: password-checker-example-app
+        build:
+            context: .
+            dockerfile: Dockerfile
+        restart: always
+        ports:
+            - "8080:8811"
