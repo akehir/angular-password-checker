@@ -36,7 +36,6 @@ deploy:
   image: docker:24.0.5
   services:
     - docker:24.0.5-dind
-  needs: ['build']
   rules:
     - if: '$CI_COMMIT_REF_SLUG == "master"'
       when: on_success
@@ -54,7 +53,6 @@ deploy:
 publish:
   stage: publish
   image: node
-  needs: ['build']
   rules:
     - if: '$CI_COMMIT_REF_SLUG == "master"'
       when: on_success
