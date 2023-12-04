@@ -36,6 +36,7 @@ deploy:
   image: docker:24.0.5
   services:
     - docker:24.0.5-dind
+  needs: ['build']
   rules:
     - if: '$CI_COMMIT_REF_SLUG == "master"'
       when: on_success
@@ -51,6 +52,7 @@ deploy:
 publish:
   stage: publish
   image: node
+  needs: ['build']
   rules:
     - if: '$CI_COMMIT_REF_SLUG == "master"'
       when: on_success
@@ -58,6 +60,5 @@ publish:
       - echo '//registry.npmjs.org/:_authToken=${NPM_TOKEN}'>~/.npmrc
       - cd $CI_PROJECT_DIR/dist/password-checker-lib
       - npm publish --access public
-      - rm -f ~/.npmrc
   after_script:
     - rm -f ~/.npmrc
