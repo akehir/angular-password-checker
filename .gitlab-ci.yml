@@ -20,8 +20,6 @@ build:
     - if: '$CI_COMMIT_REF_SLUG == "develop"'
     - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
   before_script:
-    - apt update
-    - apt install chromium -y
     - export CHROME_BIN=/usr/bin/chromium
     - npm i
   script:
