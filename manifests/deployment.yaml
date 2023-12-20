@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: password-checker-example-app
-        image: registry.akehir.com:5050/triangular/password-checker/password-checker-example-app:master
+        image: registry.akehir.com:5050/triangular/password-checker/password-checker-example-app:develop
         imagePullPolicy: Always
         ports:
         - containerPort: 8811
@@ -30,4 +30,4 @@ spec:
               - key: kubernetes.io/arch
                 operator: In
                 values:
-                - amd64
+                - arm64
