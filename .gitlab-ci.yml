@@ -2,15 +2,9 @@
 # https://docs.gitlab.com/ee/ci/yaml/
 
 stages:
-- build
-- deploy
-- publish
-
-variables:
-#  DOCKER_HOST: tcp://docker:2376
-#  DOCKER_TLS_CERTDIR: "/certs"
-#  DOCKER_TLS_VERIFY: 1
-#  DOCKER_CERT_PATH: "$DOCKER_TLS_CERTDIR/client"
+  - build
+  - deploy
+  - publish
 
 build:
   stage: build
@@ -28,14 +22,11 @@ build:
     - npm run build
   artifacts:
     paths:
-    - dist/
+      - dist/
     expire_in: 1337 mins
 
 deploy:
   stage: deploy
-#  image: docker:24.0.5
-#  services:
-#    - docker:24.0.5-dind
   tags:
     - metal
   needs: ['build']
@@ -52,7 +43,6 @@ deploy:
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
     - docker build -t $IMAGE_TAG:latest -t $IMAGE_TAG:$CI_COMMIT_REF_SLUG -t $IMAGE_TAG:$CI_COMMIT_SHORT_SHA .
     - docker push $IMAGE_TAG -a
-
 
 publish:
   stage: publish
