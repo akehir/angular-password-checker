@@ -1,10 +1,10 @@
 apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImageRepository
 metadata:
-  name: triangular-noto-emoji-image-repository
+  name: triangular-password-checker-image-repository
   namespace: triangular
 spec:
-  image: registry.akehir.com:443/triangular/noto-emoji/noto-emoji-example-app
+  image: registry.akehir.com:443/triangular/password-checker/password-checker-example-app
   interval: 5m
   secretRef:
     name: deploy-triangular
@@ -12,11 +12,11 @@ spec:
 apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImagePolicy
 metadata:
-  name: noto-emoji-example-app-image-policy
+  name: password-checker-example-app-image-policy
   namespace: triangular
 spec:
   imageRepositoryRef:
-    name: triangular-noto-emoji-image-repository
+    name: triangular-password-checker-image-repository
   filterTags:
     pattern: '^develop-[a-fA-F0-9]+-(?P<ts>[1-9][0-9]*)'
     extract: '$ts'
@@ -27,13 +27,13 @@ spec:
 apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImageUpdateAutomation
 metadata:
-  name: triangular-noto-emoji-image-update-automation
+  name: triangular-password-checker-image-update-automation
   namespace: triangular
 spec:
   interval: 5m
   sourceRef:
     kind: GitRepository
-    name: triangular-noto-emoji-git
+    name: triangular-password-checker-git
   git:
     checkout:
       ref:
@@ -52,13 +52,13 @@ spec:
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: GitRepository
 metadata:
-  name: triangular-noto-emoji-git
+  name: triangular-password-checker-git
   namespace: triangular
 spec:
   interval: 1m0s
   ref:
     branch: develop
-  url: https://git.akehir.com/triangular/noto-emoji.git
+  url: https://git.akehir.com/triangular/password-checker.git
   secretRef:
     name: triangular-mr-robot
 ---
