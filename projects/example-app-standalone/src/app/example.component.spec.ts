@@ -1,5 +1,6 @@
 import { TestBed, waitForAsync } from '@angular/core/testing';
 import { ExampleComponent } from './example.component';
+import {provideHttpClientTesting} from "@angular/common/http/testing";
 
 describe('ExampleComponent', () => {
   beforeEach(waitForAsync(() => {
@@ -8,6 +9,7 @@ describe('ExampleComponent', () => {
       imports: [
         ExampleComponent,
       ],
+      providers: [provideHttpClientTesting()]
     }).compileComponents();
   }));
 
