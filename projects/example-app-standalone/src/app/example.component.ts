@@ -2,7 +2,7 @@ import {Component, ViewEncapsulation} from '@angular/core';
 import {FormBuilder, ReactiveFormsModule, Validators} from '@angular/forms';
 import {PasswordCheckerLibDirective} from "@triangular/password-checker";
 import {DecimalPipe, NgClass, NgIf} from "@angular/common";
-import {HttpClientModule} from "@angular/common/http";
+import {} from "@angular/common/http";
 
 @Component({
   selector: 'app-example',
@@ -12,7 +12,11 @@ import {HttpClientModule} from "@angular/common/http";
   imports: [
     ReactiveFormsModule,
     PasswordCheckerLibDirective,
-    HttpClientModule,
+    
+// TODO: `HttpClientModule` should not be imported into a component directly.
+// Please refactor the code to add `provideHttpClient()` call to the provider list in the
+// application bootstrap logic and remove the `HttpClientModule` import from this component.
+HttpClientModule,
     NgClass,
     NgIf,
     DecimalPipe

@@ -1,5 +1,5 @@
 import {TestBed, waitForAsync, } from '@angular/core/testing';
-import { HttpClientTestingModule, HttpTestingController, } from '@angular/common/http/testing';
+import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { Component } from '@angular/core';
 import {
   UntypedFormBuilder,
@@ -11,6 +11,7 @@ import {
 import { By } from '@angular/platform-browser';
 import { PasswordCheckerLibDirective } from '../lib/password-checker-lib.directive';
 import { PasswordCheckerConfigValue } from '../lib/password-checker.config';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 @Component({
   selector: 'pwc-my-test-component',
@@ -33,16 +34,14 @@ class TestComponent {
 describe('PasswordCheckerDirective Module', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [
+    declarations: [
         TestComponent,
-      ],
-      imports: [
-        HttpClientTestingModule,
-        FormsModule,
+    ],
+    imports: [FormsModule,
         ReactiveFormsModule,
-        PasswordCheckerLibDirective,
-      ],
-    });
+        PasswordCheckerLibDirective],
+    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+});
   }));
 
   describe('configuration and attaching of directive', () => {
