@@ -1,0 +1,64 @@
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImageRepository
+metadata:
+  name: triangular-password-checker-image-repository
+  namespace: triangular
+spec:
+  image: registry.akehir.com:443/triangular/password-checker/password-checker-example-app
+  interval: 5m
+  secretRef:
+    name: deploy-triangular
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImagePolicy
+metadata:
+  name: password-checker-example-app-image-policy
+  namespace: triangular
+spec:
+  imageRepositoryRef:
+    name: triangular-password-checker-image-repository
+  filterTags:
+    pattern: '^develop-[a-fA-F0-9]+-(?P<ts>[1-9][0-9]*)'
+    extract: '$ts'
+  policy:
+    numerical:
+      order: asc
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImageUpdateAutomation
+metadata:
+  name: triangular-password-checker-image-update-automation
+  namespace: triangular
+spec:
+  interval: 5m
+  sourceRef:
+    kind: GitRepository
+    name: triangular-password-checker-git
+  git:
+    checkout:
+      ref:
+        branch: develop
+    commit:
+      author:
+        email: mr.robot@akehir.com
+        name: mr.robot
+      messageTemplate: '{{range .Updated.Images}}{{println .}}{{end}}'
+    push:
+      branch: develop
+  update:
+    path: ./manifests
+    strategy: Setters
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: triangular-password-checker-git
+  namespace: triangular
+spec:
+  interval: 1m0s
+  ref:
+    branch: develop
+  url: https://git.akehir.com/triangular/password-checker.git
+  secretRef:
+    name: triangular-mr-robot
+---

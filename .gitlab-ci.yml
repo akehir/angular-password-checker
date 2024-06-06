@@ -2,23 +2,18 @@
 # https://docs.gitlab.com/ee/ci/yaml/
 
 stages:
-- build
-- deploy
-- publish
-
-variables:
-  DOCKER_HOST: tcp://docker:2376
-  DOCKER_TLS_CERTDIR: "/certs"
-  DOCKER_TLS_VERIFY: 1
-  DOCKER_CERT_PATH: "$DOCKER_TLS_CERTDIR/client"
+  - build
+  - deploy
+  - publish
 
 build:
   stage: build
-  image: node
+  image: registry.akehir.com:443/infra/node-with-chromium/node-with-chromium:latest
+  rules:
+    - if: '$CI_COMMIT_REF_SLUG == "master"'
+    - if: '$CI_COMMIT_REF_SLUG == "develop"'
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
   before_script:
-    - apt update
-    - apt install chromium -y
-    - export CHROME_BIN=/usr/bin/chromium
     - npm i
   script:
     - npm run lint
@@ -27,37 +22,52 @@ build:
     - npm run build
   artifacts:
     paths:
-    - dist/password-checker-lib/
-    - dist/example-app/
+      - dist/
     expire_in: 1337 mins
 
 deploy:
   stage: deploy
-  image: docker:24.0.5
-  services:
-    - docker:24.0.5-dind
+  tags:
+    - metal
+  needs: ['build']
   rules:
     - if: '$CI_COMMIT_REF_SLUG == "master"'
+      changes:
+        - src/**/*
+        - package.json
+        - nginx.conf
+        - Dockerfile
+        - .gitlab-ci.yml
       when: on_success
     - if: '$CI_COMMIT_REF_SLUG == "develop"'
+      changes:
+        - src/**/*
+        - package.json
+        - nginx.conf
+        - Dockerfile
+        - .gitlab-ci.yml
       when: on_success
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+      when: never
   variables:
     IMAGE_TAG: $CI_REGISTRY_IMAGE/password-checker-example-app
   script:
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
-    - docker build -t $IMAGE_TAG:latest -t $IMAGE_TAG:$CI_COMMIT_REF_SLUG -t $IMAGE_TAG:$CI_COMMIT_SHORT_SHA .
+    - docker build -t $IMAGE_TAG:latest -t $IMAGE_TAG:$CI_COMMIT_REF_SLUG -t $IMAGE_TAG:$CI_COMMIT_SHORT_SHA -t $IMAGE_TAG:${CI_COMMIT_REF_SLUG}-${CI_COMMIT_SHORT_SHA}-$(date +%s) .
     - docker push $IMAGE_TAG -a
 
 publish:
   stage: publish
-  image: node
+  image: node:lts-alpine
+  needs: ['build']
   rules:
     - if: '$CI_COMMIT_REF_SLUG == "master"'
       when: on_success
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+      when: never
   script:
       - echo '//registry.npmjs.org/:_authToken=${NPM_TOKEN}'>~/.npmrc
       - cd $CI_PROJECT_DIR/dist/password-checker-lib
       - npm publish --access public
-      - rm -f ~/.npmrc
   after_script:
     - rm -f ~/.npmrc
