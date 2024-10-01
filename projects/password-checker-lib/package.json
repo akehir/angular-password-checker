@@ -1,6 +1,6 @@
 {
   "name": "@triangular/password-checker",
-  "version": "13.0.0",
+  "version": "13.2.0",
   "peerDependencies": {
     "@angular/common": "^18.0.0",
     "@angular/core": "^18.0.0"
