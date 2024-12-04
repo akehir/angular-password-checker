@@ -71,8 +71,8 @@ publish:
     - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
       when: never
   script:
-      - echo '//registry.npmjs.org/:_authToken=${NPM_TOKEN}'>~/.npmrc
-      - cd $CI_PROJECT_DIR/dist/password-checker-lib
-      - npm publish --access public
+    - echo '//registry.npmjs.org/:_authToken=${NPM_TOKEN}'>~/.npmrc
+    - cd $CI_PROJECT_DIR/dist/password-checker-lib
+    - npm publish --access public
   after_script:
     - rm -f ~/.npmrc
