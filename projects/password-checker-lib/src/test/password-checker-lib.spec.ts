@@ -13,9 +13,11 @@ import { PasswordCheckerLibDirective } from '../lib/password-checker-lib.directi
 import { PasswordCheckerConfigValue } from '../lib/password-checker.config';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
+// eslint-disable-next-line @angular-eslint/prefer-standalone
 @Component({
   selector: 'pwc-my-test-component',
-  template: ''
+  template: '',
+  standalone: false
 })
 class TestComponent {
   constructor(private fb: UntypedFormBuilder) {}
@@ -35,11 +37,12 @@ describe('PasswordCheckerDirective Module', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
     declarations: [
-        TestComponent,
+      TestComponent,
     ],
-    imports: [FormsModule,
-        ReactiveFormsModule,
-        PasswordCheckerLibDirective],
+    imports: [
+      FormsModule,
+      ReactiveFormsModule,
+      PasswordCheckerLibDirective],
     providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
 });
   }));

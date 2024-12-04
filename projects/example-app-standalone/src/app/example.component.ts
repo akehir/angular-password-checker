@@ -4,18 +4,17 @@ import {PasswordCheckerLibDirective} from "@triangular/password-checker";
 import {DecimalPipe, NgClass, NgIf} from "@angular/common";
 
 @Component({
-  selector: 'app-example',
-  templateUrl: './example.component.html',
-  styleUrls: ['./example.component.css'],
-  encapsulation: ViewEncapsulation.None,
-  imports: [
-    ReactiveFormsModule,
-    PasswordCheckerLibDirective,
-    NgClass,
-    NgIf,
-    DecimalPipe
-  ],
-  standalone: true
+    selector: 'app-example',
+    templateUrl: './example.component.html',
+    styleUrls: ['./example.component.css'],
+    encapsulation: ViewEncapsulation.None,
+    imports: [
+        ReactiveFormsModule,
+        PasswordCheckerLibDirective,
+        NgClass,
+        NgIf,
+        DecimalPipe
+    ]
 })
 export class ExampleComponent {
 
