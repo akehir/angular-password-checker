@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: password-checker-example-app
-          image: registry.akehir.com:443/triangular/password-checker/password-checker-example-app:develop-1c7ae280-1733325443 # {"$imagepolicy": "triangular:password-checker-example-app-image-policy"}
+          image: registry.akehir.com:443/triangular/password-checker/password-checker-example-app:develop-1f64443c-1733325685 # {"$imagepolicy": "triangular:password-checker-example-app-image-policy"}
           imagePullPolicy: Always
           ports:
             - containerPort: 8811
