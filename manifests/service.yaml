@@ -1,3 +1,4 @@
+---
 apiVersion: v1
 kind: Service
 metadata:
@@ -7,6 +8,7 @@ spec:
   selector:
     app: password-checker
   ports:
-  - protocol: TCP
-    port: 8001
-    targetPort: 8811
+    - protocol: TCP
+      port: 8001
+      targetPort: 8811
+---
