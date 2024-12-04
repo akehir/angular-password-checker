@@ -1,4 +1,3 @@
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -16,7 +15,7 @@ spec:
     spec:
       containers:
         - name: password-checker-example-app
-          image: registry.akehir.com:443/triangular/password-checker/password-checker-example-app:develop-549672dc-1727801258 # {"$imagepolicy": "triangular:password-checker-example-app-image-policy"}
+          image: registry.akehir.com:443/triangular/password-checker/password-checker-example-app:develop-6d497a01-1733324379 # {"$imagepolicy": "triangular:password-checker-example-app-image-policy"}
           imagePullPolicy: Always
           ports:
             - containerPort: 8811
@@ -32,4 +31,3 @@ spec:
                     operator: In
                     values:
                       - arm64
----
