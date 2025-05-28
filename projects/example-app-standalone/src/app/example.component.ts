@@ -1,7 +1,7 @@
 import {Component, ViewEncapsulation} from '@angular/core';
 import {FormBuilder, ReactiveFormsModule, Validators} from '@angular/forms';
 import {PasswordCheckerLibDirective} from "@triangular/password-checker";
-import {DecimalPipe, NgClass, NgIf} from "@angular/common";
+import { DecimalPipe, NgClass } from "@angular/common";
 
 @Component({
     selector: 'app-example',
@@ -9,12 +9,11 @@ import {DecimalPipe, NgClass, NgIf} from "@angular/common";
     styleUrls: ['./example.component.css'],
     encapsulation: ViewEncapsulation.None,
     imports: [
-        ReactiveFormsModule,
-        PasswordCheckerLibDirective,
-        NgClass,
-        NgIf,
-        DecimalPipe
-    ]
+    ReactiveFormsModule,
+    PasswordCheckerLibDirective,
+    NgClass,
+    DecimalPipe
+]
 })
 export class ExampleComponent {
 
