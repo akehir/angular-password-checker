@@ -258,7 +258,7 @@ D21307CAE168387A4C8E7559BC65382D1DB:49`;
         fixture.detectChanges();
         expect(component.pw.value).toBe('123456');
         setTimeout(() => {
-          const httpTestingController = TestBed.get(HttpTestingController);
+          const httpTestingController = TestBed.inject(HttpTestingController);
           const req = httpTestingController.expectOne('https://api.pwnedpasswords.com/range/7C4A8');
           expect(req.request.method).toEqual('GET');
           req.flush(passwordSearchResult);
@@ -293,7 +293,7 @@ D21307CAE168387A4C8E7559BC65382D1DB:49`;
 
         expect(component.pw.value).toBe('Angular Pwned Password Checker Directive');
 
-        const httpTestingController = TestBed.get(HttpTestingController);
+        const httpTestingController = TestBed.inject(HttpTestingController);
         httpTestingController.verify();
         fixture.detectChanges();
 
@@ -346,7 +346,7 @@ D21307CAE168387A4C8E7559BC65382D1DB:49`;
 
         expect(component.pw.value).toBe('123456');
         setTimeout(() => {
-          const httpTestingController = TestBed.get(HttpTestingController);
+          const httpTestingController = TestBed.inject(HttpTestingController);
           httpTestingController.verify();
 
           setTimeout(() => {
