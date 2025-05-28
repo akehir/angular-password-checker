@@ -13,11 +13,10 @@ import { PasswordCheckerLibDirective } from '../lib/password-checker-lib.directi
 import { PasswordCheckerConfigValue } from '../lib/password-checker.config';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
-// eslint-disable-next-line @angular-eslint/prefer-standalone
 @Component({
   selector: 'pwc-my-test-component',
   template: '',
-  standalone: false
+  standalone: false // eslint-disable-line @angular-eslint/prefer-standalone
 })
 class TestComponent {
   constructor(private fb: UntypedFormBuilder) {}
