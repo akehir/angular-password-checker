@@ -1,4 +1,4 @@
-import {Component, ViewEncapsulation} from '@angular/core';
+import { Component, ViewEncapsulation, inject } from '@angular/core';
 import {FormBuilder, ReactiveFormsModule, Validators} from '@angular/forms';
 import {PasswordCheckerLibDirective} from "@triangular/password-checker";
 import { DecimalPipe, NgClass } from "@angular/common";
@@ -16,8 +16,8 @@ import { DecimalPipe, NgClass } from "@angular/common";
 ]
 })
 export class ExampleComponent {
+  private fb = inject(FormBuilder);
 
-  constructor(private fb: FormBuilder) {}
 
   form = this.fb.group( {
     password: ['', Validators.required],

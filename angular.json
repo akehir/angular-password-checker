@@ -54,9 +54,7 @@
               "base": "dist/example-app"
             },
             "index": "projects/example-app/src/index.html",
-            "polyfills": [
-              "projects/example-app/src/polyfills.ts"
-            ],
+            "polyfills": [],
             "tsConfig": "projects/example-app/tsconfig.app.json",
             "assets": [
               "projects/example-app/src/favicon.ico",
@@ -121,7 +119,7 @@
           "builder": "@angular/build:karma",
           "options": {
             "main": "projects/example-app/src/test.ts",
-            "polyfills": ["projects/example-app/src/polyfills.ts"],
+            "polyfills": [],
             "tsConfig": "projects/example-app/tsconfig.spec.json",
             "karmaConfig": "projects/example-app/karma.conf.js",
             "styles": [
@@ -169,9 +167,7 @@
               "base": "dist/example-app-standalone"
             },
             "index": "projects/example-app-standalone/src/index.html",
-            "polyfills": [
-              "zone.js"
-            ],
+            "polyfills": [],
             "tsConfig": "projects/example-app-standalone/tsconfig.app.json",
             "assets": [
               "projects/example-app-standalone/src/favicon.ico",
@@ -229,10 +225,7 @@
         "test": {
           "builder": "@angular/build:karma",
           "options": {
-            "polyfills": [
-              "zone.js",
-              "zone.js/testing"
-            ],
+            "polyfills": [],
             "tsConfig": "projects/example-app-standalone/tsconfig.spec.json",
             "assets": [
               "projects/example-app-standalone/src/favicon.ico",
@@ -260,7 +253,8 @@
   "cli": {
     "schematicCollections": [
       "@angular-eslint/schematics"
-    ]
+    ],
+    "analytics": false
   },
   "schematics": {
     "@angular-eslint/schematics:application": {

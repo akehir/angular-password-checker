@@ -1,6 +1,6 @@
-import {TestBed, waitForAsync, } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
-import { Component } from '@angular/core';
+import { Component, provideZonelessChangeDetection, inject as inject_1 } from '@angular/core';
 import {
   UntypedFormBuilder,
   UntypedFormControl,
@@ -19,7 +19,8 @@ import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http'
   standalone: false // eslint-disable-line @angular-eslint/prefer-standalone
 })
 class TestComponent {
-  constructor(private fb: UntypedFormBuilder) {}
+  private fb = inject_1(UntypedFormBuilder);
+
 
   form = this.fb.group( {
     password: ['', Validators.required],
@@ -33,22 +34,26 @@ class TestComponent {
 }
 
 describe('PasswordCheckerDirective Module', () => {
-  beforeEach(waitForAsync(() => {
+  beforeEach(() =>
     TestBed.configureTestingModule({
-    declarations: [
-      TestComponent,
-    ],
-    imports: [
-      FormsModule,
-      ReactiveFormsModule,
-      PasswordCheckerLibDirective],
-    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
-});
-  }));
+      declarations: [
+        TestComponent,
+      ],
+      imports: [
+        FormsModule,
+        ReactiveFormsModule,
+        PasswordCheckerLibDirective],
+      providers: [
+        provideZonelessChangeDetection(),
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
+      ]
+    })
+  );
 
   describe('configuration and attaching of directive', () => {
 
-    it('should be able to create the directive on a [form] formControlName without a provider and default configuration', waitForAsync(() => {
+    it('should be able to create the directive on a [form] formControlName without a provider and default configuration', async () => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<form [formGroup]="form">
@@ -57,7 +62,7 @@ describe('PasswordCheckerDirective Module', () => {
         }
       });
 
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         const fixture = TestBed.createComponent(TestComponent);
         const directiveEl = fixture.debugElement.query(By.directive(PasswordCheckerLibDirective));
         expect(directiveEl).not.toBeNull();
@@ -69,9 +74,9 @@ describe('PasswordCheckerDirective Module', () => {
         expect(directiveInstance.pwnedPasswordApiCallDebounceTime).toBe(400);
         expect(directiveInstance.pwnedPasswordMinimumOccurrenceForError).toBe(1);
       });
-    }));
+    });
 
-    it('should be able to create the directive on a [form] formControlName with a provider overriding the configuration', waitForAsync(() => {
+    it('should be able to create the directive on a [form] formControlName with a provider overriding the configuration', async () => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<form [formGroup]="form">
@@ -87,7 +92,7 @@ describe('PasswordCheckerDirective Module', () => {
         }
       });
 
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         const fixture = TestBed.createComponent(TestComponent);
         const directiveEl = fixture.debugElement.query(By.directive(PasswordCheckerLibDirective));
         expect(directiveEl).not.toBeNull();
@@ -99,9 +104,9 @@ describe('PasswordCheckerDirective Module', () => {
         expect(directiveInstance.pwnedPasswordApiCallDebounceTime).toBe(16);
         expect(directiveInstance.pwnedPasswordMinimumOccurrenceForError).toBe(2);
       });
-    }));
+    });
 
-    it('should be able to create the directive with a provider overriding the configuration with an incomplete object', waitForAsync(() => {
+    it('should be able to create the directive with a provider overriding the configuration with an incomplete object', async () => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<form [formGroup]="form">
@@ -115,7 +120,7 @@ describe('PasswordCheckerDirective Module', () => {
         }
       });
 
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         const fixture = TestBed.createComponent(TestComponent);
         const directiveEl = fixture.debugElement.query(By.directive(PasswordCheckerLibDirective));
         expect(directiveEl).not.toBeNull();
@@ -127,10 +132,10 @@ describe('PasswordCheckerDirective Module', () => {
         expect(directiveInstance.pwnedPasswordApiCallDebounceTime).toBe(400);
         expect(directiveInstance.pwnedPasswordMinimumOccurrenceForError).toBe(1);
       });
-    }));
+    });
 
 
-    it('should be possible to override the module config with @Input()', waitForAsync(() => {
+    it('should be possible to override the module config with @Input()', async () => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<form [formGroup]="form">
@@ -151,7 +156,7 @@ describe('PasswordCheckerDirective Module', () => {
         }
       });
 
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         const fixture = TestBed.createComponent(TestComponent);
         const directiveEl = fixture.debugElement.query(By.directive(PasswordCheckerLibDirective));
         expect(directiveEl).not.toBeNull();
@@ -163,9 +168,9 @@ describe('PasswordCheckerDirective Module', () => {
         expect(directiveInstance.pwnedPasswordApiCallDebounceTime).toBe('32' as unknown as number);
         expect(directiveInstance.pwnedPasswordMinimumOccurrenceForError).toBe('3' as unknown as number);
       });
-    }));
+    });
 
-    it('should be possible to attach the directive to a formcontrol', waitForAsync(() => {
+    it('should be possible to attach the directive to a formcontrol', async () => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<input type="password" [formControl]="formControl"
@@ -174,7 +179,7 @@ describe('PasswordCheckerDirective Module', () => {
         }
       });
 
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         const fixture = TestBed.createComponent(TestComponent);
         const directiveEl = fixture.debugElement.query(By.directive(PasswordCheckerLibDirective));
         expect(directiveEl).not.toBeNull();
@@ -186,9 +191,9 @@ describe('PasswordCheckerDirective Module', () => {
         expect(directiveInstance.pwnedPasswordApiCallDebounceTime).toBe(400);
         expect(directiveInstance.pwnedPasswordMinimumOccurrenceForError).toBe(1);
       });
-    }));
+    });
 
-    it('should be possible to be on a model', waitForAsync(() => {
+    it('should be possible to be on a model', async () => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<input type="password" [(ngModel)]="model"
@@ -197,7 +202,7 @@ describe('PasswordCheckerDirective Module', () => {
         }
       });
 
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         const fixture = TestBed.createComponent(TestComponent);
         const directiveEl = fixture.debugElement.query(By.directive(PasswordCheckerLibDirective));
         expect(directiveEl).not.toBeNull();
@@ -209,9 +214,9 @@ describe('PasswordCheckerDirective Module', () => {
         expect(directiveInstance.pwnedPasswordApiCallDebounceTime).toBe(400);
         expect(directiveInstance.pwnedPasswordMinimumOccurrenceForError).toBe(1);
       });
-    }));
+    });
 
-    it('should be null, if the selectors are missing', waitForAsync(() => {
+    it('should be null, if the selectors are missing', async () => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<input type="password" pwnedPasswordValidator
@@ -219,14 +224,14 @@ describe('PasswordCheckerDirective Module', () => {
         }
       });
 
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         const fixture = TestBed.createComponent(TestComponent);
         const directiveEl = fixture.debugElement.query(By.directive(PasswordCheckerLibDirective));
         expect(directiveEl).toBeNull();
 
         fixture.detectChanges();
       });
-    }));
+    });
 
   });
 
@@ -237,7 +242,7 @@ D09CA3762AF61E59520943DC26494F8941B:23174662
 D1618FACC3854462B7A0EF41914D22C41B6:2
 D21307CAE168387A4C8E7559BC65382D1DB:49`;
 
-    it('should call the API and set the form invalid for bad passwords', waitForAsync (() => {
+    it('should call the API and set the form invalid for bad passwords',  async () => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<form [formGroup]="form">
@@ -246,7 +251,7 @@ D21307CAE168387A4C8E7559BC65382D1DB:49`;
         }
       });
 
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         const fixture = TestBed.createComponent(TestComponent);
         const component = fixture.componentInstance;
         const directiveEl = fixture.debugElement.query(By.directive(PasswordCheckerLibDirective));
@@ -268,9 +273,9 @@ D21307CAE168387A4C8E7559BC65382D1DB:49`;
           httpTestingController.verify();
         }, 500);
       });
-    }));
+    });
 
-    it('should call the API and set the form valid for good passwords', waitForAsync(() => {
+    it('should call the API and set the form valid for good passwords', async () => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<form [formGroup]="form">
@@ -279,7 +284,7 @@ D21307CAE168387A4C8E7559BC65382D1DB:49`;
         }
       });
 
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         const fixture = TestBed.createComponent(TestComponent);
         const component = fixture.componentInstance;
         const directiveEl = fixture.debugElement.query(By.directive(PasswordCheckerLibDirective));
@@ -314,10 +319,10 @@ D21307CAE168387A4C8E7559BC65382D1DB:49`;
           }, 200);
         }, 300);
       });
-    }));
+    });
 
 
-    it('should be configurable', waitForAsync(() => {
+    it('should be configurable', async () => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<form [formGroup]="form">
@@ -332,7 +337,7 @@ D21307CAE168387A4C8E7559BC65382D1DB:49`;
         }
       });
 
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         const fixture = TestBed.createComponent(TestComponent);
         const component = fixture.componentInstance;
         const directiveEl = fixture.debugElement.query(By.directive(PasswordCheckerLibDirective));
@@ -362,8 +367,7 @@ D21307CAE168387A4C8E7559BC65382D1DB:49`;
           }, 700)
         }, 500);
       });
-    }));
+    });
   });
-
 });
 
