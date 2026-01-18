@@ -1,11 +1,12 @@
-import { TestBed, waitForAsync } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 import { ExampleComponent } from './example.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PasswordCheckerModule } from '@triangular/password-checker';
+import { provideZonelessChangeDetection } from "@angular/core";
 
 describe('AppComponent', () => {
-  beforeEach(waitForAsync(() => {
+  beforeEach(() =>
     TestBed.configureTestingModule({
       declarations: [
         AppComponent,
@@ -16,8 +17,11 @@ describe('AppComponent', () => {
         ReactiveFormsModule,
         PasswordCheckerModule,
       ],
-    }).compileComponents();
-  }));
+      providers: [
+        provideZonelessChangeDetection(),
+      ],
+    }).compileComponents()
+  );
 
   it('should create the app', () => {
     const fixture = TestBed.createComponent(AppComponent);

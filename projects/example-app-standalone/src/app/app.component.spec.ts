@@ -2,11 +2,12 @@ import { TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 import { provideHttpClientTesting } from "@angular/common/http/testing";
 import { provideHttpClient } from "@angular/common/http";
+import { provideZonelessChangeDetection } from "@angular/core";
 
 describe('AppComponent', () => {
   beforeEach(() => TestBed.configureTestingModule({
     imports: [AppComponent],
-    providers: [provideHttpClient(), provideHttpClientTesting()]
+    providers: [provideZonelessChangeDetection(), provideHttpClient(), provideHttpClientTesting()]
   }));
 
   it('should create the app', () => {

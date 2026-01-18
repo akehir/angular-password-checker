@@ -1,4 +1,4 @@
-import {Component, ViewEncapsulation} from '@angular/core';
+import { Component, ViewEncapsulation, inject } from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
 
 @Component({
@@ -9,8 +9,8 @@ import {FormBuilder, Validators} from '@angular/forms';
   standalone: false // eslint-disable-line @angular-eslint/prefer-standalone
 })
 export class ExampleComponent {
+  private fb = inject(FormBuilder);
 
-  constructor(private fb: FormBuilder) {}
 
   form = this.fb.group( {
     password: ['', Validators.required],
